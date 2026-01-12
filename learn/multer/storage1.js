@@ -26,7 +26,7 @@ app.post("/upload", upload.array("files", 5), (req, res) => {
   if (!req.files) {
     return res.status(400).send("No files uploaded.");
   }
-  console.log("Uploaded file info:", req.files);
+  console.log("Uploaded file info:");
   res.send(`Files uploaded successfully.`);
 });
 
