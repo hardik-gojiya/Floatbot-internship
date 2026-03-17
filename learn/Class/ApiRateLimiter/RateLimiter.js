@@ -5,7 +5,6 @@ class RateLimiter {
   }
 
   check(userId) {
-    console.log(this.rule);
     const now = Date.now();
     const windowStart = now - this.rule.windowSize;
 

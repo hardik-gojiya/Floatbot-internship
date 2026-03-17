@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO API Sender</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    #messages {
+      border: 1px solid #ccc;
+      height: 250px;
+      padding: 10px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 8px;
+      width: 250px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Send Message via API + Receive via Socket</h2>
+
+  <p id="status">Connecting...</p>
+
+  <input id="messageInput" type="text" placeholder="Enter message" />
+  <button onclick="sendMessageAPI()">Send via API</button>
+
+  <div id="messages"></div>
+
+  <!-- Socket.IO client -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+  <script>
+    const socket = io("http://localhost:5000");
+
+    const status = document.getElementById("status");
+    const messagesDiv = document.getElementById("messages");
+
+    // Socket connected
+    socket.on("connect", () => {
+      status.innerHTML = "<b>Connected:</b> " + socket.id;
+      addMessage("Connected to socket server");
+    });
+
+    // Receive message from server
+    socket.on("chat-message", (msg) => {
+      addMessage("Received: " + msg);
+    });
+
+    socket.on("disconnect", () => {
+      status.innerHTML = "<b>Disconnected</b>";
+    });
+
+    // Send message via API
+    async function sendMessageAPI() {
+      const input = document.getElementById("messageInput");
+      const message = input.value;
+
+      if (!message) return;
+
+      try {
+        const response = await fetch("http://localhost:5000/send-message", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: message
+          })
+        });
+
+        const data = await response.json();
+
+        addMessage("Sent via API: " + message);
+
+        input.value = "";
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    // Add message to UI
+    function addMessage(text) {
+      const div = document.createElement("div");
+      div.innerText = text;
+      messagesDiv.appendChild(div);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>

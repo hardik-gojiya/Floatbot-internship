@@ -30,7 +30,6 @@ const limiterMiddlerware = (req, res, next) => {
 };
 
 app.get("/api", limiterMiddlerware, (req, res) => {
-
   return res.json({
     message: "Hello, this is api rate limiter api",
     remaining: req.rateLimit.remaining,

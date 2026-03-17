@@ -1,0 +1,7 @@
+{
+    "ignore": [
+        "storage/*",
+        "datasets/*",
+        "request_queues/*"
+    ]
+}

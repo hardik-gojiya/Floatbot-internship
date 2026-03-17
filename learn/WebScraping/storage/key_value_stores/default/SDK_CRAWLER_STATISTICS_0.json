@@ -1,0 +1,40 @@
+{
+  "requestsFinished": 99,
+  "requestsFailed": 0,
+  "requestsRetries": 1,
+  "requestsFailedPerMinute": 0,
+  "requestsFinishedPerMinute": 33,
+  "requestMinDurationMillis": 1506,
+  "requestMaxDurationMillis": 10379,
+  "requestTotalFailedDurationMillis": 0,
+  "requestTotalFinishedDurationMillis": 479394,
+  "crawlerStartedAt": "2026-02-03T06:24:05.755Z",
+  "crawlerFinishedAt": "2026-02-03T06:27:07.928Z",
+  "statsPersistedAt": "2026-02-03T06:27:07.928Z",
+  "crawlerRuntimeMillis": 182474,
+  "crawlerLastStartTimestamp": 1770099845454,
+  "requestRetryHistogram": [
+    98,
+    1
+  ],
+  "statsId": 0,
+  "requestAvgFailedDurationMillis": null,
+  "requestAvgFinishedDurationMillis": 4842,
+  "requestTotalDurationMillis": 479394,
+  "requestsTotal": 99,
+  "requestsWithStatusCode": {
+    "200": 100
+  },
+  "errors": {},
+  "retryErrors": {
+    "D:\\coding\\Floatbot-internship\\learn\\node_modules\\@apify\\timeout\\cjs\\index.cjs:64:68": {
+      "missing error code": {
+        "Error": {
+          "requestHandler timed out after 30 seconds.": {
+            "count": 1
+          }
+        }
+      }
+    }
+  }
+}
